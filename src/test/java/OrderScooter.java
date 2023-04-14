@@ -3,15 +3,15 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import pageOrder.MainPage;
-import pageOrder.OrderPage;
-import pageOrder.RentPage;
+import pageorder.MainPage;
+import pageorder.OrderPage;
+import pageorder.RentPage;
 
 import java.time.LocalDate;
 
 @RunWith(Parameterized.class)
 public class OrderScooter {
+    private final String url = "https://qa-scooter.praktikum-services.ru/";
 
     private String firstName;
     private String secondName;
@@ -38,7 +38,7 @@ public class OrderScooter {
 
     @Parameterized.Parameters
     public static Object[][] getTestData() {
-        return new Object[][]{{"Тест", "Тест", "Невский проспект 54", 9, "79052008682", currentDate, 2, "Полный заряд"},
+        return new Object[][]{{"Тест", "Тест", "Невский проспект 54", 9, "79052008682", currentDate, 5, "Полный заряд"},
                 {"Тесто", "Тестово", "Ветеранов 169", 28, "89437658976", currentDate, 6, "Хочу красного цвета"}
         };
     }
@@ -52,7 +52,7 @@ public class OrderScooter {
         //создаем драйвер для браузера
         //WebDriver driver = new FirefoxDriver();
         WebDriver driver = new ChromeDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(url);
 
         // создаем объект класса главной страницы
         MainPage objMainPage = new MainPage(driver);
@@ -117,61 +117,61 @@ public class OrderScooter {
         //создаем драйвер для браузера
         //WebDriver driver = new FirefoxDriver();
         WebDriver driver = new ChromeDriver();
-        driver.get("https://qa-scooter.praktikum-services.ru/");
+        driver.get(url);
 
         // создаем объект класса главной страницы
-        MainPage objMainPage2 = new MainPage(driver);
+        MainPage objMainPage = new MainPage(driver);
 
         // клик по кнопке куки
-        objMainPage2.clickCoockieButton();
+        objMainPage.clickCoockieButton();
 
         //клик по кнопке "Заказать" в хедере сайта
-        objMainPage2.clickButtonHeaderButtonOrder();
+        objMainPage.clickButtonHeaderButtonOrder();
 
         //создаем объект класса страницы заказа
-        OrderPage objOrderPage2= new OrderPage(driver);
+        OrderPage objOrderPage= new OrderPage(driver);
 
         // ввод имени
-        objOrderPage2.sendFirstName(firstName);
+        objOrderPage.sendFirstName(firstName);
 
         //ввод фамилии
-        objOrderPage2.sendSecondName(secondName);
+        objOrderPage.sendSecondName(secondName);
 
         //ввод адресса доставки
-        objOrderPage2.adressDeliverly(adressName);
+        objOrderPage.adressDeliverly(adressName);
 
         //выбор станции метро
-        objOrderPage2.choisMetro(indexMetroStation);
+        objOrderPage.choisMetro(indexMetroStation);
 
         //ввод номера телефона
-        objOrderPage2.sendNumberTelephone(telephoneNumber);
+        objOrderPage.sendNumberTelephone(telephoneNumber);
 
         // клик по кнопке далее
-        objOrderPage2.clickButtonNext();
+        objOrderPage.clickButtonNext();
 
         //создаем объект класса страницы с выбором аренды
-        RentPage objRentPage2= new RentPage(driver);
+        RentPage objRentPage= new RentPage(driver);
 
         //ввод даты аренды
-        objRentPage2.dateDelivrely(String.valueOf(currentDate));
+        objRentPage.dateDelivrely(String.valueOf(currentDate));
 
         //ввод срока на который заказывается аренда
-        objRentPage2.choisRentPeriod(indexRentPeriod);
+        objRentPage.choisRentPeriod(indexRentPeriod);
 
         //выбор чек-бокса с цветом самоката
-        objRentPage2.choiseColourGreyScooter();
+        objRentPage.choiseColourGreyScooter();
 
         //Ввод комментария для курьера
-        objRentPage2.sendCommentCourier(commentForCourier);
+        objRentPage.sendCommentCourier(commentForCourier);
 
         // клик по кнопке заказа
-        objRentPage2.clickButtonOrder();
+        objRentPage.clickButtonOrder();
 
         // клик по кнопке да в модальном окне
-        objRentPage2.clickButtonYes();
+        objRentPage.clickButtonYes();
 
         //проверка отображения модального окна с номером заказа
-        objRentPage2.isDisplayModalOrder();
+        objRentPage.isDisplayModalOrder();
 
         // закрытие браузера
         driver.quit();

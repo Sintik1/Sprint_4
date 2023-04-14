@@ -1,4 +1,4 @@
-package pageOrder;
+package pageorder;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -25,7 +25,7 @@ public class MainPage {
     private final By coockieButton = By.className("App_CookieButton__3cvqF");
 
     // локаторы выпадающего списка с вопросами
-    private final String [] arrayListOfQuestions = new String[]{
+    public static final String[] arrayListOfQuestions = new String[]{
             "accordion__heading-0",
             "accordion__heading-1",
             "accordion__heading-2",
@@ -36,7 +36,7 @@ public class MainPage {
             "accordion__heading-7"
     };
     // локаторы выпадающих ответов из списка с вопросами
-    private final String[] arrayAnswerFromTheList= new String[]{
+    public static final String[] arrayAnswerFromTheList = new String[]{
             "accordion__panel-0",
             "accordion__panel-1",
             "accordion__panel-2",
@@ -48,6 +48,7 @@ public class MainPage {
 
     };
 
+
     public MainPage(WebDriver driver) {
         this.driver = driver;
     }
@@ -56,37 +57,39 @@ public class MainPage {
     //методы
 
 
-//клик по кнопке заказа в хедере сайта
+    //клик по кнопке заказа в хедере сайта
     public void clickButtonHeaderButtonOrder() {
-        new WebDriverWait(driver,Duration.ofSeconds(30))
+        new WebDriverWait(driver, Duration.ofSeconds(30))
                 .until(ExpectedConditions.visibilityOfElementLocated(headerButtonOrder));
         driver.findElement(headerButtonOrder).click();
     }
 
     // клик по кнопке "Заказать" в середине страницы
-    public void clickMiddleButtonOrder(){
-        WebElement button = driver.findElement(By.className("Button_Middle__1CSJM"));
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", button);
+    public void clickMiddleButtonOrder() {
+        WebElement button = driver.findElement(middleButtonOrder);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", button);
         driver.findElement(middleButtonOrder).click();
     }
 
     // клик по кнопке "да все привыкли"
-    public void clickCoockieButton(){
+    public void clickCoockieButton() {
         driver.findElement(coockieButton).click();
     }
+
     // скролл главной страницы до выпадающего списка с вопросами
-    public void scrollMainPageToTheListOfQuestions(){
+    public void scrollMainPageToTheListOfQuestions() {
         WebElement element = driver.findElement(By.id(arrayListOfQuestions[7]));
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", element);
     }
+
     // клик по кнопке вопроса
-    public void clickButtonQuestions(String elementArrayQuestions){
-        new WebDriverWait(driver,Duration.ofSeconds(10))
+    public void clickButtonQuestions(String elementArrayQuestions) {
+        new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.elementToBeClickable(By.id(elementArrayQuestions)));
-        driver.findElement(By.id(elementArrayQuestions)).click();;
+        driver.findElement(By.id(elementArrayQuestions)).click();
+        ;
+
 
     }
-
-
-    }
+}
 

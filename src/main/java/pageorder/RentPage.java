@@ -1,4 +1,4 @@
-package pageOrder;
+package pageorder;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -23,13 +23,13 @@ public class RentPage {
 
     // локатор выпадающего списка срока аренды
     private final String[] arrayTimeRent = new String[]{
-            ".//div/div[2]/div[2]/div[2]/div[2]/div[1]",
-            ".//div/div[2]/div[2]/div[2]/div[2]/div[2]",
-            ".//div/div[2]/div[2]/div[2]/div[2]/div[3]",
-            ".//div/div[2]/div[2]/div[2]/div[2]/div[4]",
-            ".//div/div[2]/div[2]/div[2]/div[2]/div[5]",
-            ".//div/div[2]/div[2]/div[2]/div[2]/div[6]",
-            ".//div/div[2]/div[2]/div[2]/div[2]/div[7]"
+            ".//div[text()='сутки']",
+            ".//div[text()='двое суток']",
+            ".//div[text()='трое суток']",
+            ".//div[text()='четверо суток']",
+            ".//div[text()='пятеро суток']",
+            ".//div[text()='шестеро суток']",
+            ".//div[text()='семеро суток']"
 
     };
 
